@@ -130,5 +130,4 @@ export EDITOR=nvim
 #---------------- Aliases -------------##
 alias vi=nvim
 alias vim=nvim
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias dotfile='/usr/bin/git --git-dir=/home/mgp/dotfiles/ --work-tree=/home/mgp'
