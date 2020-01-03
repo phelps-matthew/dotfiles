@@ -122,7 +122,7 @@ set -o vi
 #export FZF_DEFAULT_COMMAND="find -L"
 
 ##determines search program for fzf
-export FZF_DEFAULT_COMMAND='rg --files --hidden'
+export FZF_DEFAULT_COMMAND='rg --files' 
 
 #default editor
 export EDITOR=nvim

@@ -2,16 +2,15 @@
 " Keys
 "-------------------------------------------------------------------------"
 let mapleader = "\<space>" 
+" allow mouse in normal and visual
 set mouse=nv
 "for key mapping
-set timeoutlen=300
+set timeoutlen=350
 "for general key code delays
 set ttimeoutlen=0
+
 imap kj <Esc>
 vmap kj <Esc>
-"imap kJ <Esc>
-"imap Kj <Esc>
-"imap KJ <Esc> 
 cmap kj <C-C>
 tmap kj <Esc>
 "nnoremap <leader><space> za 
@@ -19,16 +18,18 @@ nnoremap <F3> :e $MYVIMRC<CR>
 nnoremap <F4> :source $MYVIMRC<CR>
 nnoremap <F9> :MundoToggle<CR>
 nnoremap <leader>\ :set nohlsearch!<cr>:set hls?<cr>
-"" buffer management
+" buffer management
+"" open help in new window, make buffer listed
+command! -nargs=1 -complete=help H :h <args> | only | :set buflisted
 nnoremap <silent> <Leader>o :Buffers<CR>
 map <leader>s :w<cr>
 map <leader>c :q!<cr>
 map <leader>as :wq<cr>
-map <leader>da :bufdo bd<cr>
+map <leader>da :bufdo bd!<cr>
 map <leader>dd :bd!<cr>
 map <leader>j :bp<cr>
 map <leader>k :bn<cr>
-"" window management -w-
+" window management -w-
 set splitbelow
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
@@ -39,10 +40,11 @@ map <leader>ws <C-w>s
 map <leader>wn <C-w>n
 map <leader>wq <C-w>q
 map <leader>wc <C-w>c
-""" expand indow
+"" expand indow
 map <leader>wo <C-w>o
-""" previous
+"" previous
 map <leader>w; <C-w>;
+" terminal normal mode
 tmap <C-t> <C-\><C-n>
 "" completion popup w/i vim command-line
 map <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
@@ -171,7 +173,7 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
-" Use K to show documentation in preview window
+" Use shift+K to show documentation in preview window
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
@@ -215,32 +217,16 @@ colorscheme gruvbox
 "-------------------------------------------------------------------------"
 " fzf
 "-------------------------------------------------------------------------"
-nnoremap <leader>f :FZF<cr>
+nnoremap <leader>f :FZF --reverse<cr>
 let g:fzf_action = {
       \ 'ctrl-s': 'split',
       \ 'ctrl-v': 'vsplit'
       \ }
 
 let g:fzf_layout = { 'left': '~40%' } 
-" Using floating windows of Neovim to start fzf
-"if has('nvim')
-"  let $FZF_DEFAULT_OPTS .= ' --border --margin=0,2'
-"
-"  function! FloatingFZF()
-"    let width = float2nr(&columns * 0.9)
-"    let height = float2nr(&lines * 0.6)
-"    let opts = { 'relative': 'editor',
-"               \ 'row': (&lines - height) / 2,
-"               \ 'col': (&columns - width) / 2,
-"               \ 'width': width,
-"               \ 'height': height }
-"
-"    let win = nvim_open_win(nvim_create_buf(v:false, v:true), v:true, opts)
-"    call setwinvar(win, '&winhighlight', 'NormalFloat:Normal')
-"  endfunction
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
 
-"  let g:fzf_layout = { 'window': 'call FloatingFZF()' }
-"endif
 
 "-------------------------------------------------------------------------"
 
@@ -252,25 +238,3 @@ let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-" unicode symbols
-"let g:airline_left_sep = '»'
-"let g:airline_left_sep = '▶'
-"let g:airline_right_sep = '«'
-"let g:airline_right_sep = '◀'
-"let g:airline_symbols.linenr = '␊'
-"let g:airline_symbols.linenr = '␤'
-"let g:airline_symbols.linenr = '¶'
-"let g:airline_symbols.branch = '⎇'
-"let g:airline_symbols.paste = 'ρ'
-"let g:airline_symbols.paste = 'Þ'
-"let g:airline_symbols.paste = '∥'
-"let g:airline_symbols.whitespace = 'Ξ'
-
-" airline symbols
-"let g:airline_left_sep = ''
-"let g:airline_left_alt_sep = ''
-"let g:airline_right_sep = ''
-"let g:airline_right_alt_sep = ''
-"let g:airline_symbols.branch = ''
-"let g:airline_symbols.readonly = ''
-"let g:airline_symbols.linenr = ''
