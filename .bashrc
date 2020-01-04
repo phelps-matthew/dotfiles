@@ -119,9 +119,8 @@ fi
 #------ mp rc ----------------------------#
 set -o vi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
-#export FZF_DEFAULT_COMMAND="find -L"
 
-##determines search program for fzf
+#determines search program for fzf
 export FZF_DEFAULT_COMMAND='rg --files' 
 
 #default editor
@@ -131,3 +130,4 @@ export EDITOR=nvim
 alias vi=nvim
 alias vim=nvim
 alias dotfile='/usr/bin/git --git-dir=/home/mgp/dotfiles/ --work-tree=/home/mgp'
+alias python=python3
