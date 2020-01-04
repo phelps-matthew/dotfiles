@@ -7,7 +7,7 @@ set mouse=nv
 "for key mapping
 set timeoutlen=350
 "for general key code delays
-set ttimeoutlen=0
+set ttimeoutlen=350
 
 imap kj <Esc>
 vmap kj <Esc>
@@ -100,6 +100,8 @@ Plug 'janko/vim-test'
 Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'edkolev/tmuxline.vim'
+
+Plug 'kshenoy/vim-signature'
 
 call plug#end()
 "-------------------------------------------------------------------------"
@@ -238,3 +240,30 @@ let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
+let g:airline_symbols.whitespace = 'Ξ'
+"Missing this font in delugia. Normally three horizontal bars
+let g:airline_symbols.linenr = ''
+
+"-------------------------------------------------------------------------"
+" ipbd breakpoint toggle
+"-------------------------------------------------------------------------"
+func! s:SetBreakpoint()
+	cal append('.', repeat(' ', strlen(matchstr(getline('.'), '^\s*'))) . '# fmt: on')
+	cal append('.', repeat(' ', strlen(matchstr(getline('.'), '^\s*'))) . 'import ipdb; ipdb.set_trace()  # noqa')
+	cal append('.', repeat(' ', strlen(matchstr(getline('.'), '^\s*'))) . '# fmt: off')
+endf
+
+func! s:RemoveBreakpoint()
+	exe 'silent! g/^\s*import\sipdb\;\?\n*\s*ipdb.set_trace()/d'
+	exe 'silent! g/^\s*#\sfmt\:\so.*./d'
+endf
+
+func! s:ToggleBreakpoint()
+	if getline('.')=~#'^\s*import\sipdb' || getline('.')=~#'^\s*#\sfmt\:\so.*.'
+		cal s:RemoveBreakpoint() 
+	else
+		cal s:SetBreakpoint()
+	endif
+endf
+
+nnoremap <F7> :call <SID>ToggleBreakpoint()<CR>
