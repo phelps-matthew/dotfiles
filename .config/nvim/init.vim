@@ -47,7 +47,7 @@ map <leader>w; <C-w>;
 " terminal normal mode
 tmap <C-t> <C-\><C-n>
 "" completion popup w/i vim command-line
-map <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
+cmap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 cmap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
 "" vimux flow -e-
 map <Leader>ep :VimuxPromptCommand<CR>
@@ -60,6 +60,7 @@ map <Leader>ez :VimuxZoomRunner<CR>
 "######### vim-plug begin ###########
 "-------------------------------------------------------------------------"
 call plug#begin('~/.config/nvim/plugged')
+Plug 'clwyd/vim-signature'
  
 " py PEP8 indentation
 Plug 'https://github.com/Vimjas/vim-python-pep8-indent.git'
@@ -101,13 +102,10 @@ Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'edkolev/tmuxline.vim'
 
-Plug 'kshenoy/vim-signature'
-
 call plug#end()
 "-------------------------------------------------------------------------"
 "######## vim-plug end ############
 "-------------------------------------------------------------------------"
-
 
 "-------------------------------------------------------------------------"
 " active clipboard, relative line numbers
@@ -230,8 +228,6 @@ let g:fzf_layout = { 'left': '~40%' }
 let g:fzf_buffers_jump = 1
 
 
-"-------------------------------------------------------------------------"
-
 
 "-------------------------------------------------------------------------"
 " air-line
@@ -243,6 +239,24 @@ endif
 let g:airline_symbols.whitespace = 'Ξ'
 "Missing this font in delugia. Normally three horizontal bars
 let g:airline_symbols.linenr = ''
+let g:airline#extensions#tabline#enabled = 1
+" Seem to have some sort of problem on windows displaying full path in center
+" bottom bar. The below command also affects tabline
+"let g:airline#extensions#tabline#fnamemod = ':p:~'
+
+
+"-------------------------------------------------------------------------"
+" tmuxline
+"-------------------------------------------------------------------------"
+let g:tmuxline_preset = {
+      \'a'    : '#S',
+      \'b'    : '#W',
+      \'win'  : '#W',
+      \'cwin' : '#W',
+      \'x'    : '%l:%M %p',
+      \'y'    : '%d/%m/%y',
+      \'z'    : '#H'}
+
 
 "-------------------------------------------------------------------------"
 " ipbd breakpoint toggle
@@ -260,10 +274,12 @@ endf
 
 func! s:ToggleBreakpoint()
 	if getline('.')=~#'^\s*import\sipdb' || getline('.')=~#'^\s*#\sfmt\:\so.*.'
+		execute "normal m\*\<CR>"
 		cal s:RemoveBreakpoint() 
 	else
 		cal s:SetBreakpoint()
+		execute "normal m8\<CR>"
 	endif
 endf
 
-nnoremap <F7> :call <SID>ToggleBreakpoint()<CR>
+nnoremap <leader>ei :call <SID>ToggleBreakpoint()<CR>
