@@ -21,22 +21,23 @@ nnoremap <leader>\ :set nohlsearch!<cr>:set hls?<cr>
 " buffer management
 "" open help in new window, make buffer listed
 command! -nargs=1 -complete=help H :h <args> | only | :set buflisted
+
 nnoremap <silent> <Leader>o :Buffers<CR>
 map <leader>s :w<cr>
-map <leader>c :q!<cr>
+map <leader>x :q!<cr>
 map <leader>as :wq<cr>
 map <leader>da :bufdo bd!<cr>
 map <leader>dd :bd!<cr>
 map <leader>j :bp<cr>
 map <leader>k :bn<cr>
 " window management -w-
-set splitbelow
+"set splitbelow
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 map <leader>wv <C-w>v
-map <leader>ws <C-w>s
+map <leader>wh <C-w>s
 map <leader>wn <C-w>n
 map <leader>wq <C-w>q
 map <leader>wc <C-w>c
@@ -60,7 +61,6 @@ map <Leader>ez :VimuxZoomRunner<CR>
 "######### vim-plug begin ###########
 "-------------------------------------------------------------------------"
 call plug#begin('~/.config/nvim/plugged')
-Plug 'clwyd/vim-signature'
  
 " py PEP8 indentation
 Plug 'https://github.com/Vimjas/vim-python-pep8-indent.git'
@@ -101,6 +101,8 @@ Plug 'janko/vim-test'
 Plug 'christoomey/vim-tmux-navigator'
 
 Plug 'edkolev/tmuxline.vim'
+
+Plug 'clwyd/vim-signature'
 
 call plug#end()
 "-------------------------------------------------------------------------"
@@ -217,7 +219,7 @@ colorscheme gruvbox
 "-------------------------------------------------------------------------"
 " fzf
 "-------------------------------------------------------------------------"
-nnoremap <leader>f :FZF --reverse<cr>
+nnoremap <leader>f :FZF --reverse --border<cr>
 let g:fzf_action = {
       \ 'ctrl-s': 'split',
       \ 'ctrl-v': 'vsplit'
@@ -259,19 +261,18 @@ let g:tmuxline_preset = {
 
 
 "-------------------------------------------------------------------------"
-" ipbd breakpoint toggle
+" ipbd breakpoint toggle. vim-signature breakpoint gutter marker not working
+" well
 "-------------------------------------------------------------------------"
 func! s:SetBreakpoint()
 	cal append('.', repeat(' ', strlen(matchstr(getline('.'), '^\s*'))) . '# fmt: on')
 	cal append('.', repeat(' ', strlen(matchstr(getline('.'), '^\s*'))) . 'import ipdb; ipdb.set_trace()  # noqa')
 	cal append('.', repeat(' ', strlen(matchstr(getline('.'), '^\s*'))) . '# fmt: off')
 endf
-
 func! s:RemoveBreakpoint()
 	exe 'silent! g/^\s*import\sipdb\;\?\n*\s*ipdb.set_trace()/d'
 	exe 'silent! g/^\s*#\sfmt\:\so.*./d'
 endf
-
 func! s:ToggleBreakpoint()
 	if getline('.')=~#'^\s*import\sipdb' || getline('.')=~#'^\s*#\sfmt\:\so.*.'
 		execute "normal m\*\<CR>"
