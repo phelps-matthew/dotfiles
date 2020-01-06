@@ -8,7 +8,6 @@ set mouse=nv
 set timeoutlen=350
 "for general key code delays
 set ttimeoutlen=350
-
 imap kj <Esc>
 vmap kj <Esc>
 cmap kj <C-C>
@@ -18,10 +17,20 @@ nnoremap <F3> :e $MYVIMRC<CR>
 nnoremap <F4> :source $MYVIMRC<CR>
 nnoremap <F9> :MundoToggle<CR>
 nnoremap <leader>\ :set nohlsearch!<cr>:set hls?<cr>
+" Toggle relative or absolute number lines
+function! NumberToggle()
+	if(&nu == 1)
+		set nu!
+		set rnu
+	else
+		set nornu
+		set nu
+	endif
+endfunction
+nnoremap <leader>n :call NumberToggle()<CR>
 " buffer management
 "" open help in new window, make buffer listed
 command! -nargs=1 -complete=help H :h <args> | only | :set buflisted
-
 nnoremap <silent> <Leader>o :Buffers<CR>
 map <leader>s :w<cr>
 map <leader>x :q!<cr>
