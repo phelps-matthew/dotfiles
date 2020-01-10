@@ -7,7 +7,7 @@ set mouse=nv
 "for key mapping
 set timeoutlen=350
 "for general key code delays
-set ttimeoutlen=350
+set ttimeoutlen=50
 imap kj <Esc>
 vmap kj <Esc>
 cmap kj <C-C>
@@ -37,8 +37,8 @@ map <leader>x :q!<cr>
 map <leader>as :wq<cr>
 map <leader>da :bufdo bd!<cr>
 map <leader>dd :bd!<cr>
-map <leader>j :bp<cr>
-map <leader>k :bn<cr>
+map <leader>h :bp<cr>
+map <leader>l :bn<cr>
 " window management -w-
 "set splitbelow
 nnoremap <C-J> <C-W><C-J>
