@@ -648,7 +648,7 @@ c.TerminalInteractiveShell.highlighting_style_overrides = {
     Token.Name.Namespace: 'bold #fe8019', 
 
     # Affect ipython + ipdb
-    Token.Prompt: '#b8bb26 bold', #bright green
+    Token.Prompt: '#98971a bold', #bright green
     Token.PromptNum: '#fe8019 bold', #bright orange
     Token.OutPrompt: '#fe8019 bold',
     Token.OutPromptNum: '#fe8019 bold',
@@ -737,7 +737,7 @@ def exception_colors():
         colorLabel,
 
         # The color to be used for the top line
-        topline=C.LightRed,
+        topline=C.gb_bright_orange,
 
         # The colors to be used in the traceback
         filename=C.gb_neutral_red,
@@ -756,7 +756,7 @@ def exception_colors():
 
         # Colors for printing the exception
         excName=C.gb_bright_orange, #no change seen
-        line=C.Yellow,
+        line=C.gb_bright_orange,
         caret=C.gb_bright_orange, #no change seen
         Normal=C.gb_gray # comment """ and current line number in initial header, e.g *.py(2)
     ))

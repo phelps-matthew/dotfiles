@@ -149,7 +149,7 @@ let g:ale_linters = {
 let g:ale_completion_enabled = 0
 "" Fix the code with black upon saving or F10
 let g:ale_fixers = {'python': ['black']}
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 nmap <F10> :ALEFix<CR>
 "" ALE status in airline
 let g:airline#extensions#ale#enabled = 1

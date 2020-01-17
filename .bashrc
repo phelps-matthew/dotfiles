@@ -116,7 +116,13 @@ if ! shopt -oq posix; then
   fi
 fi
 
-#------ mp rc ----------------------------#
+
+
+
+#-----------------------------------------#
+#---------------mp rc --------------------#
+#-----------------------------------------#
+
 set -o vi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
@@ -126,7 +132,7 @@ export FZF_DEFAULT_COMMAND='rg --files'
 #default editor
 export EDITOR=nvim
 
-#---------------- Aliases -------------##
+#---------- Aliases --------------------#
 alias vi=nvim
 alias vim=nvim
 alias dotfile='/usr/bin/git --git-dir=/home/mgp/dotfiles/ --work-tree=/home/mgp'
@@ -134,3 +140,6 @@ alias python=python3
 
 #custom color prompt. see web for syntax
 export PS1="\[\e[32m\]\u\[\e[m\]\[\e[32m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\]:\[\e[36m\]\w\[\e[m\]\[\e[32m\]\$\[\e[m\] "
+
+#Ctrl+l by default clears screen in bash. We want same functionality w/ different key, Ctrl+M in this case. Particularly useful for ipdb, as startup code in ipython_config did not work. 
+bind -x '"\C-m": clear;'
