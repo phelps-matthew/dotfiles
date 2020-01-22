@@ -142,7 +142,7 @@ au BufNewFile,BufRead *.py set foldmethod=indent foldlevel=99
 "-------------------------------------------------------------------------"
 "" Set linters explicitly (flake8 only asynch. linter currently)
 let g:ale_linters = {
-     \   'python': ['flake8'],
+     \   'python': ['flake8', 'pylint'],
      \   'ruby': ['standardrb', 'rubocop'],
      \   'javascript': ['eslint'],
      \}
@@ -275,11 +275,11 @@ let g:tmuxline_preset = {
 "-------------------------------------------------------------------------"
 func! s:SetBreakpoint()
 	cal append('.', repeat(' ', strlen(matchstr(getline('.'), '^\s*'))) . '# fmt: on')
-	cal append('.', repeat(' ', strlen(matchstr(getline('.'), '^\s*'))) . 'import ipdb; ipdb.set_trace()  # noqa')
+	cal append('.', repeat(' ', strlen(matchstr(getline('.'), '^\s*'))) . 'import ipdb,os; ipdb.set_trace()  # noqa')
 	cal append('.', repeat(' ', strlen(matchstr(getline('.'), '^\s*'))) . '# fmt: off')
 endf
 func! s:RemoveBreakpoint()
-	exe 'silent! g/^\s*import\sipdb\;\?\n*\s*ipdb.set_trace()/d'
+	exe 'silent! g/^\s*import\sipdb,os\;\?\n*\s*ipdb.set_trace()/d'
 	exe 'silent! g/^\s*#\sfmt\:\so.*./d'
 endf
 func! s:ToggleBreakpoint()
