@@ -64,6 +64,17 @@ map <Leader>ep :VimuxPromptCommand<CR>
 map <Leader>el :w<cr>:VimuxRunLastCommand<CR>
 map <Leader>ei :VimuxInspectRunner<CR>
 map <Leader>ez :VimuxZoomRunner<CR>
+"" code folding remap zc
+imap zi zc
+vmap zi zc
+nmap zi zc
+"" set paste, no paste
+map <Leader>tp :set paste<CR>
+imap <Leader>tp :set paste<CR>
+map <Leader>tn :set nopaste<CR>
+imap <Leader>tn :set nopaste<CR>
+
+
 
 
 "-------------------------------------------------------------------------"
@@ -95,23 +106,30 @@ Plug 'morhetz/gruvbox'
 " coc engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" semshi syntax highlighting
+" semshi syntax highlighting. Needs gruvdboxd
 "Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 " undo tree
 Plug 'simnalamburt/vim-mundo'
 
+" send shell commands to tmux window
 Plug 'benmills/vimux'
 
-Plug 'kassio/neoterm'
+" Vim terminal improvement
+" Plug 'kassio/neoterm'
 
-Plug 'janko/vim-test'
-
+" window navigation between vim and tmux
 Plug 'christoomey/vim-tmux-navigator'
 
+" copy vim airline style to tmux
 Plug 'edkolev/tmuxline.vim'
 
+" Buggy. Puts markers in gutter.
 Plug 'clwyd/vim-signature'
+
+" simple code folding. recommends installing FastFold
+" See :help fold-commands
+Plug 'tmhedberg/SimpylFold'
 
 call plug#end()
 "-------------------------------------------------------------------------"
@@ -149,13 +167,15 @@ let g:ale_linters = {
 let g:ale_completion_enabled = 0
 "" Fix the code with black upon saving or F10
 let g:ale_fixers = {'python': ['black']}
+let g:ale_python_black_options = '-l 80'
+"" let g:ale_python_flake8_options = '--max-line-length=88'
 let g:ale_fix_on_save = 0
 nmap <F10> :ALEFix<CR>
 "" ALE status in airline
 let g:airline#extensions#ale#enabled = 1
 "" Navigate through errors
-nmap <silent> <leader>ak <Plug>(ale_previous_wrap)
-nmap <silent> <leader>aj <Plug>(ale_next_wrap)
+nmap <silent> <leader>aj <Plug>(ale_previous_wrap)
+nmap <silent> <leader>ak <Plug>(ale_next_wrap)
 nmap <F6> <Plug>(ale_toggle)
 " Toggle ALE globally
 
@@ -275,11 +295,11 @@ let g:tmuxline_preset = {
 "-------------------------------------------------------------------------"
 func! s:SetBreakpoint()
 	cal append('.', repeat(' ', strlen(matchstr(getline('.'), '^\s*'))) . '# fmt: on')
-	cal append('.', repeat(' ', strlen(matchstr(getline('.'), '^\s*'))) . 'import ipdb,os; ipdb.set_trace()  # noqa')
+	cal append('.', repeat(' ', strlen(matchstr(getline('.'), '^\s*'))) . 'import ipdb,os; ipdb.set_trace(context=5)  # noqa')
 	cal append('.', repeat(' ', strlen(matchstr(getline('.'), '^\s*'))) . '# fmt: off')
 endf
 func! s:RemoveBreakpoint()
-	exe 'silent! g/^\s*import\sipdb,os\;\?\n*\s*ipdb.set_trace()/d'
+	exe 'silent! g/^\s*import\sipdb,os\;\?\n*\s*ipdb.set_trace(context=5)/d'
 	exe 'silent! g/^\s*#\sfmt\:\so.*./d'
 endf
 func! s:ToggleBreakpoint()
