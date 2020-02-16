@@ -145,4 +145,4 @@ export PS1="\[\e[32m\]\u\[\e[m\]\[\e[32m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\]:\[\e[36m
 # Allow python sys.path to search within project directory
 # for functional module/package importing
 export PYTHONPATH=$HOME/Documents/projects/
-export DISPLAY=172.25.80.1:0
+export DISPLAY=`grep -oP "(?<=nameserver ).+" /etc/resolv.conf`:0
