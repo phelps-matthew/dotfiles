@@ -137,6 +137,12 @@ alias vi=nvim
 alias vim=nvim
 alias dotfile='/usr/bin/git --git-dir=/home/mgp/dotfiles/ --work-tree=/home/mgp'
 alias python=python3
+alias py=python3
 
 #custom color prompt. see web for syntax
 export PS1="\[\e[32m\]\u\[\e[m\]\[\e[32m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\]:\[\e[36m\]\w\[\e[m\]\[\e[32m\]\$\[\e[m\] "
+
+# Allow python sys.path to search within project directory
+# for functional module/package importing
+export PYTHONPATH=$HOME/Documents/projects/
+export DISPLAY=172.25.80.1:0
