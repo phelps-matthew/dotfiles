@@ -106,7 +106,7 @@ Plug 'morhetz/gruvbox'
 " coc engine
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" semshi syntax highlighting. Needs gruvdboxd
+" semshi syntax highlighting. Needs gruvdboxd overhaul
 "Plug 'numirias/semshi', {'do': ':UpdateRemotePlugins'}
 
 " undo tree

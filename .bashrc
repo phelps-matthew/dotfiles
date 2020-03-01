@@ -122,7 +122,6 @@ fi
 #-----------------------------------------#
 #---------------mp rc --------------------#
 #-----------------------------------------#
-
 set -o vi
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
 
@@ -138,6 +137,7 @@ alias vim=nvim
 alias dotfile='/usr/bin/git --git-dir=/home/mgp/dotfiles/ --work-tree=/home/mgp'
 alias python=python3
 alias py=python3
+alias gitme='git add -A; git commit -m "quick update"; git push'
 
 #custom color prompt. see web for syntax
 export PS1="\[\e[32m\]\u\[\e[m\]\[\e[32m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\]:\[\e[36m\]\w\[\e[m\]\[\e[32m\]\$\[\e[m\] "
