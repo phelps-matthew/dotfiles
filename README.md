@@ -8,7 +8,7 @@ Workflow configuation files.
 * Win10 keymaps (caps_alt_win10.ahk.ahk)
 * ipdb color scheme (./ipython/profile_default/ipython_config.py)
 
-## Commit Procedure:
+## Commit Procedure
 
 ```bash
 dotfile add foo.py
@@ -18,7 +18,7 @@ dotfile push
 dotfile push -f
 ```
 
-## Implementing on remote PC:
+## Implementing on remote PC
 
 ```bash
 # Clone to temp directory
