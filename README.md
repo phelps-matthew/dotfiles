@@ -10,7 +10,7 @@ Workflow configuation files.
 
 ## Commit Procedure
 
-```git
+```bash
 dotfile add foo.py
 dotfile commit -m 'added foo.py'
 dotfile push
