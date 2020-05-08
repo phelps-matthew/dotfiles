@@ -116,7 +116,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# -------- mp -----------------
+# -------- mp XPS 13 9300-----------------
 # vi cli
 set -o vi
 
