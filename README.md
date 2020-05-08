@@ -25,4 +25,8 @@ dotfile push -f
 git clone --separate-git-dir=$HOME/dotfiles git@github.com:phelps-matthew/dotfiles.git tmpdotfiles
 rsync --recursive --verbose --exclude '.git' tmpdotfiles/ $HOME/
 rm -r tmpdotfiles
+
+# tmux plugin manager
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+tmux source ~/.tmux.conf
 ```
