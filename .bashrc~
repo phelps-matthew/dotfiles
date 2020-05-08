@@ -43,7 +43,7 @@ esac
 # uncomment for a colored prompt, if the terminal has the capability; turned
 # off by default to not distract the user: the focus in a terminal window
 # should be on the output of commands, not on the prompt
-#force_color_prompt=yes
+force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
@@ -116,21 +116,33 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# -------- mp -----------------
-# vi cli
-set -o vi
 
-# default editor
+
+
+#-----------------------------------------#
+#---------------mp rc --------------------#
+#-----------------------------------------#
+set -o vi
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+#determines search program for fzf
+export FZF_DEFAULT_COMMAND='rg --files' 
+
+#default editor
 export EDITOR=nvim
 
-# the art of the command line tip (requires some packages)
-function taocl() {
-  curl -s https://raw.githubusercontent.com/jlevy/the-art-of-command-line/master/README.md |
-    sed '/cowsay[.]png/d' |
-    pandoc -f markdown -t html |
-    xmlstarlet fo --html --dropdtd |
-    xmlstarlet sel -t -v "(html/body/ul/li[count(p)>0])[$RANDOM mod last()+1]" |
-    xmlstarlet unesc | fmt -80 | iconv -t US
-}
-# do tip on startup
-taocl
+#---------- Aliases --------------------#
+alias vi=nvim
+alias vim=nvim
+alias dotfile='/usr/bin/git --git-dir=/home/mgp/dotfiles/ --work-tree=/home/mgp'
+alias python=python3
+alias py=python3
+alias gitme='git add -A; git commit -m "quick update"; git push'
+
+#custom color prompt. see web for syntax
+export PS1="\[\e[32m\]\u\[\e[m\]\[\e[32m\]@\[\e[m\]\[\e[32m\]\h\[\e[m\]:\[\e[36m\]\w\[\e[m\]\[\e[32m\]\$\[\e[m\] "
+
+# Allow python sys.path to search within project directory
+# for functional module/package importing
+export PYTHONPATH=$HOME/Documents/projects/
+export DISPLAY=`grep -oP "(?<=nameserver ).+" /etc/resolv.conf`:0
