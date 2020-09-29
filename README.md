@@ -22,7 +22,7 @@ dotfile push -f
 
 ```bash
 # Clone to temp directory
-git clone --separate-git-dir=$HOME/dotfiles git@github.com:phelps-matthew/dotfiles.git tmpdotfiles
+git clone --separate-git-dir=$HOME/dotfiles https://github.com/phelps-matthew/dotfiles.git tmpdotfiles
 rsync --recursive --verbose --exclude '.git' tmpdotfiles/ $HOME/
 rm -r tmpdotfiles
 
