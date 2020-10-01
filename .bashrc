@@ -123,6 +123,9 @@ set -o vi
 # default editor
 export EDITOR=nvim
 
+# aliases
+alias python='python3'
+
 # the art of the command line tip (requires some packages)
 function taocl() {
   curl -s https://raw.githubusercontent.com/jlevy/the-art-of-command-line/master/README.md |
@@ -133,4 +136,9 @@ function taocl() {
     xmlstarlet unesc | fmt -80 | iconv -t US
 }
 # do tip on startup
-taocl
+#taocl
+
+# add home bin path
+#echo 'export PATH=$PATH:$HOME/bin'
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
