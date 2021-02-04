@@ -64,7 +64,7 @@ map <Leader>ep :VimuxPromptCommand<CR>
 map <Leader>el :w<cr>:VimuxRunLastCommand<CR>
 map <Leader>ei :VimuxInspectRunner<CR>
 map <Leader>ez :VimuxZoomRunner<CR>
-"" code folding remap zc
+"" code folding remap zc (main keybinds are zo and zc)
 imap zi zc
 vmap zi zc
 nmap zi zc
@@ -167,8 +167,8 @@ let g:ale_linters = {
 let g:ale_completion_enabled = 0
 "" Fix the code with black upon saving or F10
 let g:ale_fixers = {'python': ['black']}
-let g:ale_python_black_options = '-l 80'
-"" let g:ale_python_flake8_options = '--max-line-length=88'
+let g:ale_python_black_options = '-l 88'
+let g:ale_python_flake8_options = '--max-line-length=88'
 let g:ale_fix_on_save = 0
 nmap <F10> :ALEFix<CR>
 "" ALE status in airline
@@ -264,12 +264,12 @@ let g:fzf_buffers_jump = 1
 " air-line
 "-------------------------------------------------------------------------"
 let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-endif
-let g:airline_symbols.whitespace = 'Ξ'
+"if !exists('g:airline_symbols')
+"    let g:airline_symbols = {}
+"endif
+"let g:airline_symbols.whitespace = 'Ξ'
 "Missing this font in delugia. Normally three horizontal bars
-let g:airline_symbols.linenr = ''
+"let g:airline_symbols.linenr = ''
 let g:airline#extensions#tabline#enabled = 1
 " Seem to have some sort of problem on windows displaying full path in center
 " bottom bar. The below command also affects tabline
@@ -285,7 +285,7 @@ let g:tmuxline_preset = {
       \'win'  : '#W',
       \'cwin' : '#W',
       \'x'    : '%l:%M %p',
-      \'y'    : '%d/%m/%y',
+      \'y'    : '%m/%d/%y',
       \'z'    : '#H'}
 
 
@@ -295,11 +295,11 @@ let g:tmuxline_preset = {
 "-------------------------------------------------------------------------"
 func! s:SetBreakpoint()
 	cal append('.', repeat(' ', strlen(matchstr(getline('.'), '^\s*'))) . '# fmt: on')
-	cal append('.', repeat(' ', strlen(matchstr(getline('.'), '^\s*'))) . 'import ipdb,os; ipdb.set_trace(context=5)  # noqa')
+	cal append('.', repeat(' ', strlen(matchstr(getline('.'), '^\s*'))) . 'import ipdb,os; ipdb.set_trace(context=30)  # noqa')
 	cal append('.', repeat(' ', strlen(matchstr(getline('.'), '^\s*'))) . '# fmt: off')
 endf
 func! s:RemoveBreakpoint()
-	exe 'silent! g/^\s*import\sipdb,os\;\?\n*\s*ipdb.set_trace(context=5)/d'
+	exe 'silent! g/^\s*import\sipdb,os\;\?\n*\s*ipdb.set_trace(context=\d*)/d'
 	exe 'silent! g/^\s*#\sfmt\:\so.*./d'
 endf
 func! s:ToggleBreakpoint()
