@@ -1,0 +1,97 @@
+{
+	"name": "Vimium C",
+	"@time": "2/3/2021, 2:57:34 PM",
+	"time": 1612400254306,
+	"environment": {
+		"extension": "1.88.1",
+		"platform": "linux",
+		"chrome": 88
+	},
+	"autoDarkMode": false,
+	"exclusionRules": [
+		{
+			"pattern": ":https://phelps-matthew.github.io/",
+			"passKeys": "r "
+		},
+		{
+			"pattern": "^https?://localhost:8888/",
+			"passKeys": ""
+		},
+		{
+			"pattern": ":https://docs.google.com/",
+			"passKeys": ""
+		},
+		{
+			"pattern": ":https://calendar.google.com/",
+			"passKeys": ""
+		},
+		{
+			"pattern": ":https://app.codesignal.com/",
+			"passKeys": ""
+		}
+	],
+	"keyMappings": [
+		"# Used for TW5",
+		"mapkey <c-[> <c-i>",
+		"mapkey <c-space> <esc>",
+		"mapkey <c-f> d",
+		"mapkey <c-b> u",
+		"mapkey <c-d> d",
+		"mapkey <c-u> u",
+		"map <c-k> goForward",
+		"map <c-j> goBack",
+		"map <c-h> previousTab",
+		"map <c-l> nextTab",
+		"map s Vomnibar.activate keyword=\"g\"",
+		"map w Vomnibar.activate keyword=\"w\"",
+		"map S Vomnibar.activateInNewTab keyword=\"g\"",
+		"map W Vomnibar.activateInNewTab keyword=\"w\"",
+		"map ( createTab url=\"https://docs.python.org/3.9/library/index.html\"",
+		"map ) createTab url=\"https://docs.python.org/3.9/tutorial/index.html\"",
+		""
+	],
+	"searchEngines": [
+		"b|ba|baidu: https://www.baidu.com/s?ie=utf-8&wd=%s Baidu",
+		"bi|bing: https://www.bing.com/search?q=%s Bing",
+		"g|go|gg|google: https://www.google.com/search?q=%s Google",
+		"js\\:|Js: javascript:\\ $S; JavaScript",
+		"w|wiki:\\",
+		"  https://www.wikipedia.org/w/index.php?search=%s Wikipedia",
+		"v.m|v\\:math: vimium://math\\ $S re= Calculate",
+		"",
+		"# More examples.",
+		"#",
+		"# (Vimium C supports search completion Google, Wikipedia,",
+		"# and so on, as above, and for these.)",
+		"#",
+		"# l: https://www.google.com/search?q=%s&btnI I'm feeling lucky",
+		"# y: https://www.youtube.com/results?search_query=%s YouTube",
+		"# gm: https://www.google.com/maps?q=%s Google maps",
+		"# d: https://duckduckgo.com/?q=%s DuckDuckGo",
+		"# az: https://www.amazon.com/s/?field-keywords=%s Amazon",
+		"# qw: https://www.qwant.com/?q=%s Qwant",
+		"",
+		"#from philc  vim",
+		"w: https://www.wikipedia.org/w/index.php?title=Special:Search&search=%s Wikipedia",
+		"g: https://www.google.com/search?q=%s Google",
+		"y: https://www.youtube.com/results?search_query=%s Youtube",
+		"JJ",
+		"# More examples.",
+		"#",
+		"# (Vimium supports search completion Wikipedia, as",
+		"# above, and for these.)",
+		"#",
+		"# g: https://www.google.com/search?q=%s Google",
+		"# l: https://www.google.com/search?q=%s&btnI I'm feeling lucky...",
+		"# y: https://www.youtube.com/results?search_query=%s Youtube",
+		"# gm: https://www.google.com/maps?q=%s Google maps",
+		"# b: https://www.bing.com/search?q=%s Bing",
+		"# d: https://duckduckgo.com/?q=%s DuckDuckGo",
+		"# az: https://www.amazon.com/s/?field-keywords=%s Amazon",
+		"# qw: https://www.qwant.com/?q=%s Qwant",
+		""
+	],
+	"showAdvancedCommands": true,
+	"showAdvancedOptions": true,
+	"vimSync": false
+}
