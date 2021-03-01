@@ -7,7 +7,6 @@
 # Within ~/.bashrc
 echo '# ------------ mp -------------- #' >> $HOME/.bashrc
 echo 'set -o vi' >> $HOME/.bashrc
-echo "alias python='python3'" >> $HOME/.bashrc
 echo "export LS_COLORS=\$LS_COLORS:'ow=35:'" >> $HOME/.bashrc
 echo "-- Updated ~/.bashrc --"
 
