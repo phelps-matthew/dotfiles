@@ -4,6 +4,8 @@
 # Bare Installation
 # ----------------- # 
 
+# TODO: Include nodejs
+
 # Within ~/.bashrc
 echo '# ------------ mp -------------- #' >> $HOME/.bashrc
 echo 'set -o vi' >> $HOME/.bashrc
