@@ -1,7 +1,7 @@
 "-------------------------------------------------------------------------"
 " Keys
 "-------------------------------------------------------------------------"
-color slate
+"color slate
 
 let mapleader = "\<space>" 
 " allow mouse in normal and visual
@@ -115,3 +115,86 @@ set nowritebackup
 " Increase maxmempattern for big jsons (default 1000)   
 "-------------------------------------------------------------------------"
 set mmp=100000
+
+"-------------------------------------------------------------------------"
+"######### vim-plug begin ###########
+"-------------------------------------------------------------------------"
+" Install vim-plug if not found
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
+" Run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
+call plug#begin('~/.config/nvim/plugged')
+
+" fzf fuzzy search (also install)
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
+Plug 'junegunn/fzf.vim'
+
+" airline bar
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" gruvbox color theme
+Plug 'morhetz/gruvbox'
+
+" window navigation between vim and tmux
+Plug 'christoomey/vim-tmux-navigator'
+
+" copy vim airline style to tmux
+Plug 'edkolev/tmuxline.vim'
+
+call plug#end()
+
+"-------------------------------------------------------------------------"
+" guvbox activate
+"-------------------------------------------------------------------------"
+let g:gruvbox_italic=1
+colorscheme gruvbox
+
+"-------------------------------------------------------------------------"
+" fzf
+"-------------------------------------------------------------------------"
+nnoremap <leader>f :FZF --reverse --border<cr>
+let g:fzf_action = {
+      \ 'ctrl-s': 'split',
+      \ 'ctrl-v': 'vsplit'
+      \ }
+
+let g:fzf_layout = { 'left': '~80%' } 
+" [Buffers] Jump to the existing window if possible
+let g:fzf_buffers_jump = 1
+
+"-------------------------------------------------------------------------"
+" air-line
+"-------------------------------------------------------------------------"
+let g:airline_powerline_fonts = 1
+"if !exists('g:airline_symbols')
+"    let g:airline_symbols = {}
+"endif
+"let g:airline_symbols.whitespace = 'Ξ'
+"Missing this font in delugia. Normally three horizontal bars
+"let g:airline_symbols.linenr = ''
+let g:airline#extensions#tabline#enabled = 1
+" Seem to have some sort of problem on windows displaying full path in center
+" bottom bar. The below command also affects tabline
+"let g:airline#extensions#tabline#fnamemod = ':p:~'
+let g:airline#extensions#tabline#formatter = 'short_path'
+
+"-------------------------------------------------------------------------"
+" tmuxline
+"-------------------------------------------------------------------------"
+let g:tmuxline_preset = {
+      \'a'    : '#S',
+      \'b'    : '#W',
+      \'win'  : '#W',
+      \'cwin' : '#W',
+      \'x'    : '%l:%M %p',
+      \'y'    : '%m/%d/%y',
+      \'z'    : '#H'}
