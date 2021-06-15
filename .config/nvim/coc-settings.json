@@ -1,9 +1,0 @@
-{
-    "diagnostic.displayByAle": true,
-    "python.linting.enabled": false,
-    "python.jediEnabled": false,
-    //"python.formatting.blackPath":"~/.local/bin/black",
-    //"python.formatting.provider": "black",
-    "python.autoUpdateLanguageServer": true,
-    //"python.sortImports.path": "/home/mgp/.local/bin/isort",
-}
