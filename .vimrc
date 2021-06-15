@@ -1,8 +1,6 @@
 "-------------------------------------------------------------------------"
 " Keys
 "-------------------------------------------------------------------------"
-"color slate
-
 let mapleader = "\<space>" 
 " allow mouse in normal and visual
 set mouse=nv
@@ -132,17 +130,13 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
 
 call plug#begin('~/.config/nvim/plugged')
 
-" fzf fuzzy search (also install)
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
-Plug 'junegunn/fzf.vim'
-
 " airline bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
 " gruvbox color theme
-Plug 'morhetz/gruvbox'
+Plug 'lifepillar/vim-gruvbox8'
+"Plug 'morhetz/gruvbox'
 
 " window navigation between vim and tmux
 Plug 'christoomey/vim-tmux-navigator'
@@ -155,21 +149,11 @@ call plug#end()
 "-------------------------------------------------------------------------"
 " guvbox activate
 "-------------------------------------------------------------------------"
-let g:gruvbox_italic=1
-colorscheme gruvbox
-
-"-------------------------------------------------------------------------"
-" fzf
-"-------------------------------------------------------------------------"
-nnoremap <leader>f :FZF --reverse --border<cr>
-let g:fzf_action = {
-      \ 'ctrl-s': 'split',
-      \ 'ctrl-v': 'vsplit'
-      \ }
-
-let g:fzf_layout = { 'left': '~80%' } 
-" [Buffers] Jump to the existing window if possible
-let g:fzf_buffers_jump = 1
+"let g:gruvbox_italic=1
+"colorscheme gruvbox
+"colorscheme gruvbox8_hard
+colorscheme gruvbox8
+set background=dark
 
 "-------------------------------------------------------------------------"
 " air-line
