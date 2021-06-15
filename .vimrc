@@ -1,6 +1,7 @@
 "-------------------------------------------------------------------------"
 " Keys
 "-------------------------------------------------------------------------"
+color slate
 
 let mapleader = "\<space>" 
 " allow mouse in normal and visual
@@ -12,7 +13,6 @@ set ttimeoutlen=50
 imap kj <Esc>
 vmap kj <Esc>
 cmap kj <C-C>
-tmap kj <Esc>
 "nnoremap <leader><space> za 
 nnoremap <F3> :e $MYVIMRC<CR>
 nnoremap <F4> :source $MYVIMRC<CR>
@@ -55,7 +55,6 @@ map <leader>wo <C-w>o
 "" previous
 map <leader>w; <C-w>;
 " terminal normal mode
-tmap <C-t> <C-\><C-n>
 "" completion popup w/i vim command-line
 cmap <expr> <C-j> pumvisible() ? "\<C-n>" : "\<C-j>"
 cmap <expr> <C-k> pumvisible() ? "\<C-p>" : "\<C-k>"
